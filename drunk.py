@@ -71,7 +71,7 @@ class Deck:
         return self.cards.pop()
 
     
-d=Deck()
+#d=Deck()
 """for card in d.cards:
     print(card)"""
 
@@ -81,7 +81,48 @@ print(d.rm_card())
 print()
 print(d.cards)"""
 
-for i in range(60):
-    print(d.rm_card())
-    print(len(d.cards))
-    print()
+
+class Player:
+    def __init__(self, n):
+        self.name = n
+        self.card = None
+        self.wins = 0
+        
+
+
+class Game:
+    def __init__(self):
+        self.deck = Deck()
+        name1 = input("введите имя игрока 1: ")
+        name2 = input("введите имя игрока 2: ")
+        self.p1 = Player(name1)
+        self.p2 = Player(name2)
+        
+    def play_game(self):
+        cards = self.deck.cards
+        print("Игра началась!")
+        while len(cards) >= 2:
+            p1c = self.deck.rm_card()
+            p2c = self.deck.rm_card()
+            p1n = self.p1.name
+            p2n = self.p2.name
+            print(f"{p1n} кладет {p1c}, а {p2n} кладет {p2c} .")
+            if p1c > p2c:
+                self.p1.wins += 1
+                self.wins(p1n)
+            else:
+                self.p2.wins +=1
+                self.wins(p2n)
+
+        print(f"У {self.p1.wins} побед, у {self.p2.wins} побед")
+        if self.p1.wins > self.p2.wins:
+            print(f"{p1n} выиграл! Игра окончена")
+        elif self.p2.wins > self.p1.wins:
+            print(f"{p2n} выиграл! Игра окончена")
+        else:
+            print(f"Ничья! Игра окончена")
+
+    def wins(self,winner):
+        print(f"{winner} забирает карты")
+
+Game().play_game()
