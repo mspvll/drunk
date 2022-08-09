@@ -47,8 +47,8 @@ class Card:
         return v
 c1 = Card(10, 1)
 c2 = Card(11, 2)
-print(c1 < c2)
-print (c1)
+#print(c1 < c2)
+#print (c1)
 
 
 
@@ -108,13 +108,11 @@ class Game:
             p2n = self.p2.name
             print(f"{p1n} кладет {p1c}, а {p2n} кладет {p2c} .")
             if p1c > p2c:
-                self.p1.wins += 1
-                self.wins(p1n)
+                self.wins(self.p1)
             else:
-                self.p2.wins +=1
-                self.wins(p2n)
+                self.wins(self.p2)
 
-        print(f"У {self.p1.wins} побед, у {self.p2.wins} побед")
+        print(f"У {p1n} {self.p1.wins} побед, у {p2n} {self.p2.wins} побед")
         if self.p1.wins > self.p2.wins:
             print(f"{p1n} выиграл! Игра окончена")
         elif self.p2.wins > self.p1.wins:
@@ -123,6 +121,12 @@ class Game:
             print(f"Ничья! Игра окончена")
 
     def wins(self,winner):
-        print(f"{winner} забирает карты")
+        winner.wins +=1
+        print(f"{winner.name} забирает карты")
+
+    
 
 Game().play_game()
+
+
+
